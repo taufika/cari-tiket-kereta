@@ -1,0 +1,29 @@
+// custom screen size
+$small-desktop: 1400px;
+$tablet: 1024px;
+$tablet-portrait: 991px;
+$phone: 767px;
+
+// desktop small and tablet potrait ( max-width 1400px )
+@include mediaBreakpoint($small-desktop) {
+
+
+}
+
+// tablet landscape ( max-width 1024px )
+@include mediaBreakpoint($tablet) {
+
+
+}
+
+// tablet portrait ( max-width 991px )
+@include mediaBreakpoint($tablet-portrait){
+
+
+}
+
+//small mobile (max-width 767px)
+@include mediaBreakpoint($phone) {
+
+
+}

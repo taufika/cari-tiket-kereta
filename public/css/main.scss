@@ -1,0 +1,19 @@
+// ===== Responsive Styles ===========================================================================
+// Author: Taufik AKbar (taufik@xtremax.com)
+// 2016
+// Info: Main styling for TOTE (desktop-first approach)
+// ===================================================================================================
+
+// import bootstrap variables, grid and mixins
+@import "../js/vendor/bootstrap/scss/bootstrap";
+@import "../js/vendor/font-awesome/scss/font-awesome";
+@import "fonts";
+@import "variable";
+@import "setting";
+@import "mixin";
+
+
+// import styles
+@import "default";
+@import "responsive";
+

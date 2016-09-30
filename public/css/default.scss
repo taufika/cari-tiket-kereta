@@ -1,0 +1,530 @@
+// reset
+* {
+	outline: none !important;
+
+	&:focus {
+		outline: none !important;
+	}
+}
+
+a {
+	text-decoration: none;
+	cursor: pointer;
+
+	&:hover, &:focus {
+		text-decoration: none;
+	}
+}
+
+// divs
+div{
+
+	&.centered{
+		text-align: center;
+	}
+}
+
+// buttons
+button, input[type="button"], .button, a.button{
+	font-size: 32px;
+	border: none;
+	padding: 10px 20px;
+	background-color: white;
+
+	&.rounded{
+		border-radius: 10px;
+	}
+
+	&.primary{
+		background-color: $theme-dark;
+		color: white;
+
+		&:hover{
+			background-color: $theme-green-dark;
+			color: white;
+		}
+	}
+
+	&.accent{
+		background-color: $theme-accent;
+		color: $theme-dark;
+
+		&:hover{
+			background-color: $theme-green-light;
+		}
+	}
+}
+
+// datepicker
+.ui-datepicker{
+	display: none;
+	background: white;
+	margin-left: 0px;
+	box-shadow: 3px 3px 2px 1px rgba(0,0,0,0.3);
+	font-family: $roboto-condensed, sans-serif;
+
+	.ui-datepicker-header{
+		padding: 20px;
+		background-color: $theme-green-light;
+		position: relative;
+
+		.ui-datepicker-prev{
+			position: absolute;
+			left: 20px;
+			cursor: pointer;
+			
+			&::before{
+				content: "\f053";
+				font-family: $font-awesome;
+				color: $theme-dark;
+			}
+
+			span{
+				display: none;
+			}
+		}
+
+		.ui-datepicker-next{
+			position: absolute;
+			right: 20px;
+			cursor: pointer;
+
+			&::before{
+				content: "\f054";
+				font-family: $font-awesome;
+				color: $theme-dark;
+			}
+
+			span{
+				display: none;
+			}
+		}
+
+		.ui-datepicker-title{
+			padding: 0px 40px;
+			color: $theme-dark;
+			text-align: center;
+		}
+	}
+
+	.ui-datepicker-calendar{
+		width: 100%;
+
+		th,td{
+			padding: 10px;
+		}
+
+		.ui-state-disabled{
+			cursor: default;
+
+			span{
+				color: #a9a9a9;
+			}
+		}
+
+		td[data-handler="selectDay"]{
+			cursor: pointer;
+			text-align: center;
+
+			a{
+				color: $theme-dark;
+			}
+
+			&:hover{
+				background-color: $theme-accent;
+
+				a{
+					font-weight: 700;
+				}
+			}
+		}
+	}
+}
+
+// form group
+.form-group{
+	margin: 10px;
+}
+
+// input
+input[type="text"]{
+
+	&:invalid, &:-moz-ui-invalid{
+		box-shadow: none;
+	}
+}
+
+// checkboxes
+input[type="checkbox"]{
+	display: none;
+
+	& + label{
+		cursor: pointer;
+		font-size: 18px;
+		line-height: 20px;
+		height: 20px;
+		margin-bottom: 0px;
+
+		.checkbox{
+			height: 20px;
+			border-radius: 10px;
+			width: 40px;
+			background-color: lightgray;
+			display: inline-block;
+			position: relative;
+			transition: all 0.3s;
+
+			.inside{
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				background-color: $theme-dark;
+				position: absolute;
+				left: 0px;
+				transition: all 0.3s;
+			}
+		}
+	}
+
+	&:checked{
+
+		& + label{
+
+			.checkbox{
+				background-color: $theme-green;
+
+				.inside{
+					right: 0px;
+					left: 20px;
+				}
+			}
+		}
+	}
+}
+
+body{
+	font-family: $montserrat, sans-serif;
+
+	header{
+
+	}
+
+	main{
+		height: 100vh;
+		overflow: hidden;
+
+		section{
+			min-height: 100vh;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+
+			&.main{
+				background-color: $theme-dark;
+				color: white;
+
+				h1{
+					font-size: 40px;
+					line-height: 60px;
+				}
+
+				.select-wrapper{
+					display: inline-block;
+					position: relative;
+
+					&::after{
+						content: "\f107";
+						font-family: $font-awesome;
+						pointer-events: none;
+						color: $theme-accent;
+						position: absolute;
+						right: 5px;
+						top: 5px;
+					}
+				}
+
+				select.main{
+					border: none;
+					border-bottom: 2px dashed $theme-accent;
+					background: none;
+					color: $theme-accent;
+					appearance: none;
+					-webkit-appearance: none;
+					-moz-appearance: none;
+					padding-right: 60px;
+
+					option{
+						background-color: white;
+						color: $theme-dark;
+					}
+				}
+
+				input{
+					border: none;
+					border-bottom: 2px dashed $theme-accent;
+					background: none;
+					color: $theme-accent;
+				}
+
+				div.centered{
+					margin-top: 80px;
+				}
+
+				.error-tip{
+					display: none;
+					position: absolute;
+					top: 0px;
+					right: 80px;
+					padding-top: 80px;
+
+					.error-box{
+						background-color: white;
+						box-shadow: 3px 3px 2px 1px rgba(0,0,0,0.3);
+						padding: 20px;
+						text-align: center;
+						width: 150px;
+						word-wrap: break-word;
+						transition: all 0.5s;
+
+						p{
+							color: black;
+							font-family: $roboto-condensed;
+							transition: all 0.5s;
+						}
+
+						span.fa{
+							color: #ff7777;
+							font-size: 60px;
+							transition: all 0.5s;
+						}
+					}
+
+					&.new{
+
+						.error-box{
+							background-color: #ff4444;
+
+							p, span.fa{
+								color: white;
+							}
+						}
+					}
+				}
+			}
+
+			&.list{
+
+				.list-content{
+					height: 100%;
+					width: 80%;
+					padding: 40px 0px;
+
+					.list-header{
+						border-bottom: 3px solid $theme-dark;
+						margin-bottom: 40px;
+
+						h3{
+
+							span{
+								color: $theme-green;
+							}
+						}
+
+						.ulangi-pencarian{
+							margin: 25px 0px;
+							display: table;
+							font-size: 20px;
+						}
+					}
+
+					.list-filter{
+
+						.stasiun{
+							display: flex;
+							flex-direction: row;
+							justify-content: flex-start;
+							flex-wrap: nowrap;
+
+							.judul{
+								font-family: $roboto-condensed, sans-serif;
+								font-size: 22px;
+								padding: 20px;
+								color: $theme-dark;
+							}
+
+							.list{
+								padding: 20px;
+								display: flex;
+								flex-direction: row;
+								justify-content: flex-start;
+								align-items: center;
+								flex-wrap: wrap;
+							}
+						}
+					}
+
+					.class-box{
+
+						.box{
+							margin: 25px 0px;
+							display: none;
+
+							.card{
+								border: none;
+								border-radius: 0px;
+								box-shadow: 2px 2px 3px 1px rgba(0,0,0,0.3);
+								background-color: #fcfcfc;
+								font-family: $roboto-condensed, sans-serif;
+								width: calc(100% - 10px);
+								margin-left: 5px;
+								
+								.rute{
+									padding: 10px;
+									border-bottom: 1px solid #eeeeee;
+									background-color: white;
+									color: #4a4a4a;
+								}
+
+								.detail{
+									padding: 20px;
+									display: flex;
+									flex-direction: row;
+									justify-content: space-around;
+									align-items: center;
+									flex-wrap: nowrap;
+
+									.nama-kereta{
+										font-family: $montserrat, sans-serif;
+										font-size: 24px;
+										font-weight: 700;
+										padding: 0px 20px;
+										width: 300px;
+									}
+
+									.berangkat, .sampai{
+										text-align: center;
+										
+										.head{
+											color: #4a4a4a;
+										}
+
+										.foot{
+											color: $theme-dark;
+											font-family: $montserrat, sans-serif;
+											font-size: 24px;
+										}
+									}
+
+									.harga{
+										font-family: $montserrat, sans-serif;
+										font-weight: 700;
+										font-size: 28px;
+										color: $theme-dark;
+									}
+
+									.beli{
+
+										.button{
+											font-size: 18px;
+											font-family: $montserrat, sans-serif;
+										}
+									}
+								}
+							}
+						}
+
+						&.eksekutif{
+							
+							.eksekutif{
+								display: block;
+							}
+						}
+
+						&.bisnis{
+							
+							.bisnis{
+								display: block;
+							}
+						}
+
+						&.ekonomi{
+							
+							.ekonomi{
+								display: block;
+							}
+						}
+					}
+
+				}
+
+				.loading-screen{
+					width: 100%;
+					height: 100vh;
+					position: absolute;
+					top: 0px;
+					left: 0px;
+					background-color: rgba(0,0,0,0.6);
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					align-items: center;
+
+					span.fa{
+						color: $theme-accent;
+						font-size: 100px;
+						animation: spin 4s linear infinite;
+					}
+
+					.loading{
+						margin-top: 40px;
+						text-align: center;
+
+						h3{
+							color: $theme-accent;
+						}
+					}
+				}
+
+				.no-ticket{
+					display: none;
+					width: 400px;
+					height: calc(50vh + 200px);
+					position: absolute;
+					left: calc(50% - 200px);
+					top: calc(50% - 200px);
+
+					.box{
+						width: 400px;
+						height: 400px;
+						background-color: $theme-dark;
+						box-shadow: 3px 3px 4px 1px rgba(0,0,0,0.3);
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						align-items: center;
+						padding: 20px;
+
+						h2{
+							color: $theme-green-light;
+							text-align: center;
+							margin-bottom: 40px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	footer{
+
+	}
+}
+
+// animations
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); }}
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); }}
+@keyframes spin { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg); }}
+

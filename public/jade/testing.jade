@@ -1,0 +1,125 @@
+//- index.jade
+- var title = "Project X"
+- var page = "Testing"
+include ./includes/variable.jade
+
+doctype html
+html(lang="en")
+
+	// html head
+	head
+		include ./includes/head.jade
+
+	// body
+	body
+
+		// page header
+		include ./includes/header.jade
+
+		main(role="main")
+			// testing image landscape and portrait
+			//- div
+			//- 	img(src="#{srcImageLandscape}")
+			//- div
+			//- 	img(src="#{srcImageportrait}")
+			//- div
+			//- 	img(src="#{srcImageLandscapeSmall}")
+			//- div
+			//- 	img(src="#{srcImageportraitSmall}")
+
+			// testing image wrap
+			// wrap size 300px X 300px
+			p portrait cover default
+			+img-cover("img/testing/image-portrait.jpg", "default")
+
+			p landscape cover default
+			+img-cover("img/testing/image-landscape.jpg", "default")
+
+			p portrait cover small picture default
+			+img-cover("img/testing/image-portrait-small.jpg", "default")
+
+			p landscape cover small picture default
+			+img-cover("img/testing/image-landscape-small.jpg", "default")
+
+			p portrait cover top
+			+img-cover("img/testing/image-portrait.jpg", "top")
+
+			p landscape cover left
+			+img-cover("img/testing/image-landscape.jpg", "left")
+
+			p portrait cover small picture top
+			+img-cover("img/testing/image-portrait-small.jpg", "top")
+
+			p landscape cover small picture left
+			+img-cover("img/testing/image-landscape-small.jpg", "left")
+
+			p portrait cover bottom
+			+img-cover("img/testing/image-portrait.jpg", "bottom")
+
+			p landscape cover right
+			+img-cover("img/testing/image-landscape.jpg", "right")
+
+			p portrait cover small picture bottom
+			+img-cover("img/testing/image-portrait-small.jpg", "bottom")
+
+			p landscape cover small picture right
+			+img-cover("img/testing/image-landscape-small.jpg", "right")
+
+			p portrait contain default
+			+img-contain("img/testing/image-portrait.jpg", "default")
+
+			p landscape contain default
+			+img-contain("img/testing/image-landscape.jpg", "default")
+
+			p portrait contain small picture default
+			+img-contain("img/testing/image-portrait-small.jpg", "default")
+
+			p landscape contain small picture default
+			+img-contain("img/testing/image-landscape-small.jpg", "default")
+
+			p portrait contain left
+			+img-contain("img/testing/image-portrait.jpg", "left")
+
+			p landscape contain top
+			+img-contain("img/testing/image-landscape.jpg", "top")
+
+			p portrait contain small picture left
+			+img-contain("img/testing/image-portrait-small.jpg", "left")
+
+			p landscape contain small picture top
+			+img-contain("img/testing/image-landscape-small.jpg", "top")
+
+			p portrait contain right
+			+img-contain("img/testing/image-portrait.jpg", "right")
+
+			p landscape contain bottom
+			+img-contain("img/testing/image-landscape.jpg", "bottom")
+
+			p portrait contain small picture right
+			+img-contain("img/testing/image-portrait-small.jpg", "right")
+
+			p landscape contain small picture bottom
+			+img-contain("img/testing/image-landscape-small.jpg", "bottom")
+
+			// testing text length
+			//- p #{textLong}
+			//- p #{text30}
+			//- p #{text25}
+			//- p #{text20}
+			//- p #{text15}
+			//- p #{text10}
+
+			// list menu
+			//- +menu(['cat', 'dog', 'pig'])
+
+			// list menu with font awesome
+			//- +menu(['<i class="fa fa-search"></i>cat', '<i class="fa fa-print"></i>dog', '<i class="fa fa-pencil"></i>pig'])
+
+			// list menu with div icon
+			//- +menu(['<div class="ic-cat"></div><span>cat</span>', '<div class="ic-dog"><span>dog</span>', '<div class="ic-pig"><span>pig</span>'])
+
+		// global script
+		include ./includes/script.jade
+
+		// footer
+		include ./includes/footer.jade

@@ -1,0 +1,11 @@
+// responsive
+
+@mixin mediaBreakpoint($width){
+
+    @media screen and(max-width: $width){
+
+        body{
+            @content;
+        }
+    }
+}

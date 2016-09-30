@@ -1,0 +1,156 @@
+//- index.jade
+- var title = "Cari Tiket Kereta Api"
+- var page = "Homepage"
+
+doctype html
+html(lang="en")
+
+	// html head
+	head
+		include ./includes/head.jade
+
+	// body
+	body
+
+		// page header
+		include ./includes/header.jade
+
+		// page main
+		main(role="main")
+
+			// main section
+			section.main
+				form.main
+					h1 
+						| Saya mencari tiket dari
+						.select-wrapper
+							select(name="asal" id="asal" required="true").main.stasiun
+								option(val="bandung") Bandung
+								option(val="banjar") Banjar
+						br
+						| ke
+						.select-wrapper
+							select(name="tujuan" id="tujuan" required="true").main.stasiun
+								option(val="bandung") Bandung
+								option(val="banjar") Banjar
+						br
+						| pada tanggal
+						input(type="text" name="tanggal" id="tanggal" required="true").tanggal
+						br
+						| dengan kelas
+						.select-wrapper
+							select(name="kelas" id="kelas" required="true").main
+								option(val="semua") Apapun
+								option(val="eksekutif") Eksekutif
+								option(val="bisnis") Bisnis
+								option(val="ekonomi") Ekonomi
+						br
+						| untuk 
+						.select-wrapper
+							select(name="penumpang" id="penumpang" required="true").main
+								option(val="1") 1
+								option(val="2") 2
+								option(val="3") 3
+								option(val="4") 4
+						| &ensp;orang
+					div.centered
+						button(data-next="section.list" type="submit").rounded.accent SEARCH &emsp;
+							span.fa.fa-search
+
+				// error tip
+				.error-tip
+					.error-box
+						p.text AAAAAAAA
+						span.fa.fa-lightbulb-o
+
+			// list section
+			section.list
+				.list-content
+					.list-header
+						h3
+							| Tiket kereta dari 
+							span#label-asal asal
+							|  ke 
+							span#label-tujuan tujuan
+							|  pada tanggal 
+							span#label-tanggal 01 01 2016
+							|  dengan kelas 
+							span#label-kelas ekonomi
+							|  untuk 
+							span#label-penumpang 3
+							|  orang
+						a.button.primary.ulangi-pencarian Ganti Pencarian&emsp;
+							span.fa.fa-refresh
+
+					.list-filter
+						h3 Stasiun Keberangkatan
+						.stasiun.keberangkatan
+							.judul Bandung
+							.list
+								//- .form-group
+									input(type="checkbox" id="x").stas
+									label(for="x") 
+										.checkbox(checked=true)
+											.inside
+										| &ensp;Bandung
+
+						h3 Stasiun Kedatangan
+						.stasiun.kedatangan
+							.judul Banjar
+							.list
+						
+					.list-body
+						.class-box.eksekutif.bisnis.ekonomi
+							.box.eksekutif
+								h2 Eksekutif
+								.jadwal
+									//- .card
+										.rute
+											span.asal Kiaracondong
+											|  - 
+											span.tujuan Banjar
+											| &emsp;
+											span.subclass Subclass A
+										.detail
+											.nama-kereta KA LODAYA XX
+											.berangkat
+												.head Kiaracondong
+												.foot 19:00
+											.strip Sampai
+											.sampai
+												.head Banjar
+												.foot 03:00
+											.durasi
+												| ( 
+												span.durasi 4j
+												|  )
+											.harga IDR 200.000
+											.beli
+												a(href="" target="_blank").button.accent Beli via Tiket.com
+
+
+
+				
+
+		
+							.box.bisnis
+								h2 Bisnis
+								.jadwal
+							.box.ekonomi
+								h2 Ekonomi
+								.jadwal
+				.loading-screen
+					span.fa.fa-refresh
+					.loading
+						h3 Loading ...
+				.no-ticket
+					.box
+						h2 Tidak Ada Tiket Untuk Perjalanan Ini
+						a.button.accent.ulangi-pencarian Ganti Pencarian&emsp;
+							span.fa.fa-refresh
+
+		// page footer
+		include ./includes/footer.jade
+
+		// page script
+		include ./includes/script.jade

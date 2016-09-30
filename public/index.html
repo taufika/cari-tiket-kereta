@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- html head-->
+  <head>
+    <!-- meta-->
+    <title>Cari Tiket Kereta Api</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Cari Tiket Kereta Api">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- icons-->
+    <!-- stylesheets-->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" media="print" href="css/print.css">
+    <!-- script-->
+  </head>
+  <!-- body-->
+  <body>
+    <!-- page header-->
+    <header></header>
+    <!-- page main-->
+    <main role="main">
+      <!-- main section-->
+      <section class="main">
+        <form class="main">
+          <h1>
+             
+            Saya mencari tiket dari
+            <div class="select-wrapper">
+              <select name="asal" id="asal" required="true" class="main stasiun">
+                <option val="bandung">Bandung</option>
+                <option val="banjar">Banjar</option>
+              </select>
+            </div><br>ke
+            <div class="select-wrapper">
+              <select name="tujuan" id="tujuan" required="true" class="main stasiun">
+                <option val="bandung">Bandung</option>
+                <option val="banjar">Banjar</option>
+              </select>
+            </div><br>pada tanggal
+            <input type="text" name="tanggal" id="tanggal" required="true" class="tanggal"><br>dengan kelas
+            <div class="select-wrapper">
+              <select name="kelas" id="kelas" required="true" class="main">
+                <option val="semua">Apapun</option>
+                <option val="eksekutif">Eksekutif</option>
+                <option val="bisnis">Bisnis</option>
+                <option val="ekonomi">Ekonomi</option>
+              </select>
+            </div><br>untuk 
+            <div class="select-wrapper">
+              <select name="penumpang" id="penumpang" required="true" class="main">
+                <option val="1">1</option>
+                <option val="2">2</option>
+                <option val="3">3</option>
+                <option val="4">4</option>
+              </select>
+            </div>&ensp;orang
+          </h1>
+          <div class="centered">
+            <button data-next="section.list" type="submit" class="rounded accent">SEARCH &emsp;<span class="fa fa-search"></span></button>
+          </div>
+        </form>
+        <!-- error tip-->
+        <div class="error-tip">
+          <div class="error-box">
+            <p class="text">AAAAAAAA</p><span class="fa fa-lightbulb-o"></span>
+          </div>
+        </div>
+      </section>
+      <!-- list section-->
+      <section class="list">
+        <div class="list-content">
+          <div class="list-header">
+            <h3>Tiket kereta dari <span id="label-asal">asal</span> ke <span id="label-tujuan">tujuan</span> pada tanggal <span id="label-tanggal">01 01 2016</span> dengan kelas <span id="label-kelas">ekonomi</span> untuk <span id="label-penumpang">3</span> orang</h3><a class="button primary ulangi-pencarian">Ganti Pencarian&emsp;<span class="fa fa-refresh"></span></a>
+          </div>
+          <div class="list-filter">
+            <h3>Stasiun Keberangkatan</h3>
+            <div class="stasiun keberangkatan">
+              <div class="judul">Bandung</div>
+              <div class="list">
+              </div>
+            </div>
+            <h3>Stasiun Kedatangan</h3>
+            <div class="stasiun kedatangan">
+              <div class="judul">Banjar</div>
+              <div class="list"></div>
+            </div>
+          </div>
+          <div class="list-body">
+            <div class="class-box eksekutif bisnis ekonomi">
+              <div class="box eksekutif">
+                <h2>Eksekutif</h2>
+                <div class="jadwal">
+                </div>
+              </div>
+              <div class="box bisnis">
+                <h2>Bisnis</h2>
+                <div class="jadwal"></div>
+              </div>
+              <div class="box ekonomi">
+                <h2>Ekonomi</h2>
+                <div class="jadwal"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="loading-screen"><span class="fa fa-refresh"></span>
+          <div class="loading">
+            <h3>Loading ...</h3>
+          </div>
+        </div>
+        <div class="no-ticket">
+          <div class="box">
+            <h2>Tidak Ada Tiket Untuk Perjalanan Ini</h2><a class="button accent ulangi-pencarian">Ganti Pencarian&emsp;<span class="fa fa-refresh"></span></a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- page footer-->
+    <footer></footer>
+    <!-- page script-->
+    <!-- script-->
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+    <script src="js/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="js/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="https://cdn.rawgit.com/blowsie/Pure-JavaScript-HTML5-Parser/master/htmlparser.js"></script>
+    <script src="https://cdn.rawgit.com/Jxck/html2json/master/src/html2json.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
