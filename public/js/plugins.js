@@ -210,7 +210,7 @@ MyNamespace.UIComponents = function( customSetting ) {
 							stasiun.asal_long.push( hasil[i].split("#")[1] );
 
 							var str = '<div class="form-group">\
-										<input type="checkbox" id="' + hasil[i].split("#")[0] + '" class="stas" checked disabled>\
+										<input type="checkbox" id="' + hasil[i].split("#")[0] + '" class="stas" checked>\
 										<label for="' + hasil[i].split("#")[0] + '"> \
 											<div class="checkbox">\
 											<div class="inside"></div>\
@@ -232,7 +232,7 @@ MyNamespace.UIComponents = function( customSetting ) {
 								stasiun.tujuan_long.push( hasil[i].split("#")[1] );
 
 								var str = '<div class="form-group">\
-											<input type="checkbox" id="' + hasil[i].split("#")[0] + '" class="stas" checked disabled>\
+											<input type="checkbox" id="' + hasil[i].split("#")[0] + '" class="stas" checked>\
 											<label for="' + hasil[i].split("#")[0] + '"> \
 												<div class="checkbox">\
 												<div class="inside"></div>\
