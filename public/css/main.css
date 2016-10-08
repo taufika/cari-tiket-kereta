@@ -10019,6 +10019,19 @@ body main section.list .no-ticket .box h2 {
   body main section.list .list-content {
     width: 95%;
   }
+  body main section.list .list-content .list-filter h3 {
+    cursor: pointer;
+  }
+  body main section.list .list-content .list-filter h3::after {
+    content: "    \f078";
+    font-family: "FontAwesome";
+  }
+  body main section.list .list-content .list-filter h3.expand::after {
+    content: "    \f077";
+  }
+  body main section.list .list-content .list-filter .stasiun {
+    display: none;
+  }
   body main section.list .list-content .list-body .class-box .box .card .detail {
     flex-wrap: wrap;
   }

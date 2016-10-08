@@ -205,6 +205,26 @@ main{
             .list-content{
                 width: 95%;
 
+                .list-filter{
+
+                    h3{
+                        cursor: pointer;
+
+                        &::after{
+                            content: "    \f078";
+                            font-family: $font-awesome;
+                        }
+
+                        &.expand::after{
+                            content: "    \f077";
+                        }
+                    }
+
+                    .stasiun{
+                        display: none;
+                    }
+                }
+
                 .list-body{
 
                     .class-box{

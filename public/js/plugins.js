@@ -53,6 +53,18 @@ MyNamespace.UIComponents = function( customSetting ) {
 		return this;
 	}
 
+	// array sorter
+	Array.prototype.sortOn = function(key){
+		this.sort(function(a, b){
+			if(a[key] < b[key]){
+				return -1;
+			}else if(a[key] > b[key]){
+				return 1;
+			}
+			return 0;
+		});
+	}
+
 	this.init = function() {
 
 		initFirebase();
@@ -70,6 +82,9 @@ MyNamespace.UIComponents = function( customSetting ) {
 
 		// init options
 		initOptions();
+
+		// init filter box
+		initFilterBox();
 	}
 
 	// method to load firebase API
@@ -228,6 +243,7 @@ MyNamespace.UIComponents = function( customSetting ) {
 							}
 
 							console.log("Retrieving stasiun kedatangan berhasil");
+							var daftarKereta = [];
 
 							// reset cards
 							$(" .jadwal ").html("");
@@ -246,6 +262,40 @@ MyNamespace.UIComponents = function( customSetting ) {
 
 									clearInterval(loader);
 									$(" .loading-screen ").fadeOut(300, function(){
+
+										// load daftar kereta
+										daftarKereta.sort(function(a, b){
+											if(parseInt(a["harga"].split("IDR ")[1].replace(".","")) < parseInt(b["harga"].split("IDR ")[1].replace(".",""))){
+												return -1;
+											}else if(parseInt(a["harga"].split("IDR ")[1].replace(".","")) > parseInt(b["harga"].split("IDR ")[1].replace(".",""))){
+												return 1;
+											}
+											return 0;
+										});
+										
+										for(var iter = 0; iter < daftarKereta.length; iter++){
+
+											var str = '<div class="card ' + daftarKereta[iter].stasiunBerangkatShort + ' ' + daftarKereta[iter].stasiunKedatanganShort + '">\
+														<div class="rute"><span class="asal">' + daftarKereta[iter].stasiunBerangkat + '</span> - <span class="tujuan">' + daftarKereta[iter].stasiunKedatangan + '</span>&emsp;<span class="subclass">' + daftarKereta[iter].subClass + '</span></div>\
+														<div class="detail">\
+														<div class="nama-kereta">' + daftarKereta[iter].nama + '</div>\
+														<div class="berangkat">\
+															<div class="head">' + daftarKereta[iter].stasiunBerangkat + '</div>\
+															<div class="foot">' + daftarKereta[iter].waktuBerangkat + '</div>\
+														</div>\
+														<div class="strip">Sampai</div>\
+														<div class="sampai">\
+															<div class="head">' + daftarKereta[iter].stasiunKedatangan + '</div>\
+															<div class="foot">' + daftarKereta[iter].waktuKedatangan + '</div>\
+														</div>\
+														<div class="durasi">( <span class="durasi">' + daftarKereta[iter].durasi + '</span> )</div>\
+														<div class="harga">' + daftarKereta[iter].harga + '</div>\
+														<div class="beli"><a href="' + daftarKereta[iter].link + '" target="_blank" class="button accent">Beli via Tiket.com</a></div>\
+														</div>';
+
+											$(" .box." + daftarKereta[iter].kelas.toLowerCase() + " .jadwal ").append(str);
+										}
+
 
 										// enable scrollbar
 										$(" main ").css("overflow","auto");
@@ -323,28 +373,22 @@ MyNamespace.UIComponents = function( customSetting ) {
 															classID[stasiunBerangkatShort] = 1;
 															classID[stasiunKedatanganShort] = 1;
 
-															var str = '<div class="card ' + stasiunBerangkatShort + ' ' + stasiunKedatanganShort + '">\
-																		<div class="rute"><span class="asal">' + stasiunBerangkat + '</span> - <span class="tujuan">' + stasiunKedatangan + '</span>&emsp;<span class="subclass">' + subClass + '</span></div>\
-																		<div class="detail">\
-																		<div class="nama-kereta">' + nama + '</div>\
-																		<div class="berangkat">\
-																			<div class="head">' + stasiunBerangkat + '</div>\
-																			<div class="foot">' + waktuBerangkat + '</div>\
-																		</div>\
-																		<div class="strip">Sampai</div>\
-																		<div class="sampai">\
-																			<div class="head">' + stasiunKedatangan + '</div>\
-																			<div class="foot">' + waktuKedatangan + '</div>\
-																		</div>\
-																		<div class="durasi">( <span class="durasi">' + durasi + '</span> )</div>\
-																		<div class="harga">' + harga + '</div>\
-																		<div class="beli"><a href="' + link + '" target="_blank" class="button accent">Beli via Tiket.com</a></div>\
-																		</div>';
-
-															$(" .box." + kelas.toLowerCase() + " .jadwal ").append(str);
+															daftarKereta.push({
+																nama: nama,
+																subClass: subClass,
+																waktuBerangkat: waktuBerangkat,
+																stasiunBerangkat: stasiunBerangkat,
+																stasiunBerangkatShort: stasiunBerangkatShort,
+																waktuKedatangan: waktuKedatangan,
+																stasiunKedatangan: stasiunKedatangan,
+																stasiunKedatanganShort: stasiunKedatanganShort,
+																durasi: durasi,
+																harga: harga,
+																kelas: kelas
+															});
 
 															// add listener to checkbox
-															$(" .stas ").prop("disabled", true).off().prop("disabled", false).on("change", function(){
+															$(" .stas ").off().on("change", function(){
 																
 																var theId = $(this).attr("id");
 
@@ -447,6 +491,16 @@ MyNamespace.UIComponents = function( customSetting ) {
 					$(" select.stasiun ").append('<option val="' + k + '">' + kota + '</option>');
 				}
 			}
+		});
+	}
+
+	// method to collapse filter box on mobile
+	var initFilterBox = function(){
+
+		$(" .list-content .list-filter h3 ").click(function(){
+
+			$(this).next().slideToggle(300);
+			$(this).toggleClass("expand");
 		});
 	}
 
