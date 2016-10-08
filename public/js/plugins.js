@@ -108,7 +108,7 @@ MyNamespace.UIComponents = function( customSetting ) {
 		// init datepicker
 		if( $(" input.tanggal ").length ){
 
-			$(" input.tanggal ").datepicker({ minDate: 2, maxDate: "+3M" });
+			$(" input.tanggal ").datepicker({ minDate: 1, maxDate: "+3M" });
 			$(" input.tanggal ").datepicker("option", "dateFormat","yy-mm-dd");
 		}
 	}
@@ -251,7 +251,9 @@ MyNamespace.UIComponents = function( customSetting ) {
 										$(" main ").css("overflow","auto");
 
 										// if no ticket
-										if( ($(" .box.eksekutif .jadwal ").html() + $(" .box.bisnis .jadwal ").html() + $(" .box.ekonomi .jadwal ").html()) == "" ){
+										if( ($(" .box.eksekutif .jadwal ").is(" :hidden ") || $(" .box.eksekutif .jadwal ").html() == "") &&
+										 	($(" .box.bisnis .jadwal ").is(" :hidden ") || $(" .box.bisnis .jadwal ").html() == "") &&
+										  	($(" .box.ekonomi .jadwal ").is(" :hidden ") || $(" .box.ekonomi .jadwal ").html() == "") ){
 
 											$(" .no-ticket ").fadeIn(500);
 										}

@@ -418,6 +418,15 @@ body{
 										}
 									}
 
+									.strip{
+										padding: 10px;
+									}
+
+									.durasi{
+										white-space: nowrap;
+										padding: 10px;
+									}
+
 									.harga{
 										font-family: $montserrat, sans-serif;
 										font-weight: 700;
@@ -426,10 +435,13 @@ body{
 									}
 
 									.beli{
+										margin-left: 20px;
 
 										.button{
 											font-size: 18px;
 											font-family: $montserrat, sans-serif;
+											display: inline-block;
+											text-align: center;
 										}
 									}
 								}
