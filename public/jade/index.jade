@@ -20,7 +20,7 @@ html(lang="en")
 
 			// main section
 			section.main
-				form.main
+				form(autocomplete="off").main
 					h1 
 						| Saya mencari tiket dari
 						.select-wrapper
@@ -35,7 +35,7 @@ html(lang="en")
 								option(val="banjar") Banjar
 						br
 						| pada tanggal
-						input(type="text" name="tanggal" id="tanggal" required="true").tanggal
+						input(type="text" name="tanggal" id="tanggal" autocomplete="off" required="true").tanggal
 						br
 						| dengan kelas
 						.select-wrapper
