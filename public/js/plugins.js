@@ -142,6 +142,11 @@ MyNamespace.UIComponents = function( customSetting ) {
 					$(" .loading-screen ").hide();
 					$(" .no-ticket ").hide();
 
+					// reset filter malam
+					$(" .siang-malam ").find(" .isi ").removeClass("siang malam").addClass("both");
+					$(" section.list ").removeClass("malam");
+
+
 					// scroll to the section
 					$(" main ").animate({
 						scrollTop: $(" main ").scrollTop() + $(" section.list ").offset().top,
@@ -275,7 +280,7 @@ MyNamespace.UIComponents = function( customSetting ) {
 										
 										for(var iter = 0; iter < daftarKereta.length; iter++){
 
-											var str = '<div class="card ' + daftarKereta[iter].stasiunBerangkatShort + ' ' + daftarKereta[iter].stasiunKedatanganShort + '">\
+											var str = '<div class="card ' + daftarKereta[iter].stasiunBerangkatShort + ' ' + daftarKereta[iter].stasiunKedatanganShort + ' ' + daftarKereta[iter].midTime + '">\
 														<div class="rute"><span class="asal">' + daftarKereta[iter].stasiunBerangkat + '</span> - <span class="tujuan">' + daftarKereta[iter].stasiunKedatangan + '</span>&emsp;<span class="subclass">' + daftarKereta[iter].subClass + '</span></div>\
 														<div class="detail">\
 														<div class="nama-kereta">' + daftarKereta[iter].nama + '</div>\
@@ -295,6 +300,105 @@ MyNamespace.UIComponents = function( customSetting ) {
 
 											$(" .box." + daftarKereta[iter].kelas.toLowerCase() + " .jadwal ").append(str);
 										}
+
+										// add listener to checkbox
+										$(" .stas ").off().on("change", function(){
+											
+											var theId = $(this).attr("id");
+
+											if( $(this).is(":checked") ){
+												
+												classID[theId] = 1;
+											} else {
+												classID[theId] = 0;
+											}
+
+											// show or hide card
+											$(" .box .jadwal .card ").each(function(){
+
+												var classes = $(this).attr("class").split(/\s+/);
+												var c = 0;
+
+												for(var i = 0; i < classes.length; i++ ){
+
+													if( typeof classID[classes[i]] !== 'undefined' ){
+
+														c += classID[classes[i]];
+													}
+												}
+
+												if( c < 3 ){
+													$(this).hide();
+												} else {
+													$(this).show();
+												}
+											});
+										});
+
+										// siang malam button
+										$(" .siang-malam ").off().click(function(){
+
+												var showNotif = function(text){
+
+													$(" section.list .notif h3 ").text(text);
+													$(" section.list .notif ").show("slide", {direction: "down"}, 500, function(){
+
+														setTimeout(function(){
+															$(" section.list .notif ").hide("slide", {direction: "down"}, 500);
+														}, 2000 );
+													});
+												}
+
+												var filterSM = function(){
+
+													// show or hide card
+													$(" .box .jadwal .card ").each(function(){
+
+														var classes = $(this).attr("class").split(/\s+/);
+														var c = 0;
+
+														for(var i = 0; i < classes.length; i++ ){
+
+															if( typeof classID[classes[i]] !== 'undefined' ){
+
+																c += classID[classes[i]];
+															}
+														}
+
+														if( c < 3 ){
+															$(this).hide();
+														} else {
+															$(this).show();
+														}
+													});
+												}
+
+												if( $(this).find(" .isi ").is(" .both ") ){
+
+													$(this).find(" .isi ").removeClass("both").addClass("siang");
+													showNotif("Menampilkan tiket dengan perjalanan siang hari");
+													classID["Malam"] = 0;
+													filterSM();
+
+												} else if( $(this).find(" .isi ").is(" .siang ") ){
+
+													$(" section.list ").addClass("malam");
+													$(this).find(" .isi ").removeClass("siang").addClass("malam");
+													showNotif("Menampilkan tiket dengan perjalanan malam hari");
+													classID["Siang"] = 0;
+													classID["Malam"] = 1;
+													filterSM();
+
+												} else {
+
+													$(this).find(" .isi ").removeClass("malam").addClass("both");
+													$(" section.list ").removeClass("malam");
+													showNotif("Menampilkan tiket dengan perjalanan siang dan malam hari");
+													classID["Siang"] = 1;
+													classID["Malam"] = 1;
+													filterSM();
+												}
+											});
 
 
 										// enable scrollbar
@@ -366,12 +470,33 @@ MyNamespace.UIComponents = function( customSetting ) {
 														var harga = info[9].child[1].child[0].text;
 														var kelas = info[11].child[1].child[0].text;
 
+														var berangkat = parseInt(waktuBerangkat.replace(":",""));
+														var addedTime = parseInt(durasi.split("j")[0])*50;
+														var mid = berangkat + addedTime;
+														var midTime = "";
+
+														// check if siang or malam
+														if( mid > 600 && mid < 1800 ){
+															midTime = "Siang";
+														} else if( mid > 1800 || mid < 600 ){
+															midTime = "Malam";
+														} else {
+
+															if(berangkat < 1800){
+																midTime = "Siang";
+															} else {
+																midTime = "Malam";
+															}
+														}
+
 														// check availability
 														if( info[13].child[1].child.length > 2 ){
 															var link = info[13].child[1].child[1].attr.href;
 
 															classID[stasiunBerangkatShort] = 1;
 															classID[stasiunKedatanganShort] = 1;
+															classID["Siang"] = 1;
+															classID["Malam"] = 1;
 
 															daftarKereta.push({
 																nama: nama,
@@ -384,45 +509,12 @@ MyNamespace.UIComponents = function( customSetting ) {
 																stasiunKedatanganShort: stasiunKedatanganShort,
 																durasi: durasi,
 																harga: harga,
-																kelas: kelas
-															});
-
-															// add listener to checkbox
-															$(" .stas ").off().on("change", function(){
-																
-																var theId = $(this).attr("id");
-
-																if( $(this).is(":checked") ){
-																	
-																	classID[theId] = 1;
-																} else {
-																	classID[theId] = 0;
-																}
-
-																// show or hide card
-																$(" .box .jadwal .card ").each(function(){
-
-																	var classes = $(this).attr("class").split(/\s+/);
-																	var c = 0;
-
-																	for(var i = 0; i < classes.length; i++ ){
-
-																		if( typeof classID[classes[i]] !== 'undefined' ){
-
-																			c += classID[classes[i]];
-																		}
-																	}
-
-																	if( c < 2 ){
-																		$(this).hide();
-																	} else {
-																		$(this).show();
-																	}
-																});
+																kelas: kelas,
+																midTime: midTime
 															});
 
 															// console.log(info);
-															// console.log(nama + " " + waktuBerangkat + " (" + stasiunBerangkat + ") - " + waktuKedatangan + " (" + stasiunKedatangan + ") Lama perjalanan " + durasi + ", kelas " + kelas + " @ " + harga);
+															// console.log(nama + " " + waktuBerangkat + " (" + stasiunBerangkat + ") - " + waktuKedatangan + " (" + stasiunKedatangan + ") Lama perjalanan " + durasi + " (midTime : " + midTime + " ), kelas " + kelas + " @ " + harga);
 														}
 													}
 												}

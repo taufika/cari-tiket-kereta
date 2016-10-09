@@ -316,11 +316,244 @@ body{
 			}
 
 			&.list{
+				justify-content: flex-start;
+				transition: background 1s;
+
+				&.malam{
+					background-color: #333333;
+
+					.list-content{
+
+						.list-header{
+							border-color: $theme-green-light;
+							
+							h3{
+								color: white;
+							}
+						}
+
+						.list-filter{
+
+							h3{
+								color: white;
+							}
+
+							.stasiun{
+
+								.judul{
+									color: $theme-accent;
+								}
+
+								.list{
+
+									input[type="checkbox"]{
+
+										& + label{
+											color: white;
+
+											.checkbox{
+												background-color: #555555;
+
+												.inside{
+													background-color: white;
+												}
+											}
+										}
+
+										&:checked + label{
+
+											.checkbox{
+												background-color: $theme-green;
+											}
+										}
+									}
+								}
+							}
+						}
+
+						.list-body{
+
+							.class-box{
+
+								.box{
+
+									h2{
+										color: white;
+									}
+
+									.card{
+										background-color: #2a2a2a;
+
+										.rute{
+											background-color: #444444;
+											border-color: #555555;
+											color: #eeeeee;
+										}
+
+										.detail{
+
+											.nama-kereta{
+												color: white;
+											}
+
+											.berangkat, .sampai{
+
+												.head{
+													color: #eeeeee;
+												}
+
+												.foot{
+													color: $theme-accent;
+												}
+											}
+
+											.strip{
+												color: #eeeeee;
+											}
+
+											.durasi{
+												color: #eeeeee;
+											}
+
+											.harga{
+												color: $theme-accent;
+											}
+
+											.beli{
+												
+												a{
+													background-color: $theme-dark;
+													color: $theme-accent;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
 
 				.list-content{
 					height: 100%;
 					width: 80%;
 					padding: 40px 0px;
+					position: relative;
+
+					.siang-malam{
+						width: 10%;
+						padding-bottom: 10%;
+						background-color: red;
+						position: absolute;
+						top: 0px;
+						left: -12.5%;
+						box-shadow: 0px 0px 2px 1px rgba(0,0,0,0.5);
+						overflow: hidden;
+						cursor: pointer;
+
+						&:hover{
+
+							.isi{
+								background-color: $theme-accent;
+							}
+						}
+
+						.isi{
+							width: 100%;
+							height: 100%;
+							position: absolute;
+							left: 0px;
+							top: 0px;
+							right: 0px;
+							bottom: 0px;
+							background-color: white;
+							padding: 10px;
+							transition: all 0.3s;
+
+							.fa{
+								font-size: 24px;
+								position: absolute;
+								transition: all 0.5s;
+								top: 15px;
+								left: 15px;
+							}
+
+							&.both{
+
+								.fa-sun-o{
+									color: $theme-green;
+									top: 50%;
+									transform: translateY(-50%);
+									left: 5px;
+								}
+
+								.fa-moon-o{
+									color: $theme-dark;
+									left: 50%;
+									top: 5px;
+									transform: translateX(-50%);
+								}
+							}
+
+							&.siang{
+
+								.fa-sun-o{
+									top: 15px;
+									left: 15px;
+								}
+
+								.fa-moon-o{
+									top: 101%;
+								}
+							}
+
+							&.malam{
+
+								.fa-sun-o{
+									top: 101%;
+								}
+
+								.fa-moon-o{
+									top: 15px;
+									left: 15px;
+								}
+							}
+						}
+
+						.segitiga{
+							position: absolute;
+							bottom: 0px;
+							left: 0px;
+							width: 0px;
+							height: 0px;
+							border-bottom: 500px solid $theme-dark;
+							border-left: 500px solid transparent;
+						}
+					}
+
+					.notif{
+						position: fixed;
+						bottom: 0px;
+						left: 0px;
+						width: 100%;
+						padding: 30px 30%;
+						display: none;
+						z-index: 6;
+
+						.notif-box{
+							width: 100%;
+							background-color: rgba(0,0,0,0.8);
+							border-radius: 5px;
+							text-align: center;
+							padding: 10px;
+
+							h3{
+								color: white;
+								font-size: 18px;
+								line-height: normal;
+							}
+						}
+					}
 
 					.list-header{
 						border-bottom: 3px solid $theme-dark;

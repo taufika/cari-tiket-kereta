@@ -158,6 +158,20 @@ main{
 
             .list-content{
                 width: 90%;
+
+                .siang-malam{
+                    width: 100px;
+                    padding-bottom: 100px;
+                    left: -5.55556%;
+                    top: -40px;
+                    margin-bottom: 0px;
+                    position: relative;
+                    box-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+                }
+
+                .notif{
+                    padding: 30px 10%;
+                }
             }
         }
     }
@@ -204,6 +218,14 @@ main{
 
             .list-content{
                 width: 95%;
+
+                .siang-malam{
+                    left: -2.631578947368421052631578947368%;
+                }
+
+                .notif{
+                    padding: 20px 5%;
+                }
 
                 .list-filter{
 

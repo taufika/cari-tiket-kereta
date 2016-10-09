@@ -9715,10 +9715,198 @@ body main section.main .error-tip.new .error-box p, body main section.main .erro
   color: white;
 }
 
+body main section.list {
+  justify-content: flex-start;
+  transition: background 1s;
+}
+
+body main section.list.malam {
+  background-color: #333333;
+}
+
+body main section.list.malam .list-content .list-header {
+  border-color: #A8DBA8;
+}
+
+body main section.list.malam .list-content .list-header h3 {
+  color: white;
+}
+
+body main section.list.malam .list-content .list-filter h3 {
+  color: white;
+}
+
+body main section.list.malam .list-content .list-filter .stasiun .judul {
+  color: #CFF09E;
+}
+
+body main section.list.malam .list-content .list-filter .stasiun .list input[type="checkbox"] + label {
+  color: white;
+}
+
+body main section.list.malam .list-content .list-filter .stasiun .list input[type="checkbox"] + label .checkbox {
+  background-color: #555555;
+}
+
+body main section.list.malam .list-content .list-filter .stasiun .list input[type="checkbox"] + label .checkbox .inside {
+  background-color: white;
+}
+
+body main section.list.malam .list-content .list-filter .stasiun .list input[type="checkbox"]:checked + label .checkbox {
+  background-color: #79BD9A;
+}
+
+body main section.list.malam .list-content .list-body .class-box .box h2 {
+  color: white;
+}
+
+body main section.list.malam .list-content .list-body .class-box .box .card {
+  background-color: #2a2a2a;
+}
+
+body main section.list.malam .list-content .list-body .class-box .box .card .rute {
+  background-color: #444444;
+  border-color: #555555;
+  color: #eeeeee;
+}
+
+body main section.list.malam .list-content .list-body .class-box .box .card .detail .nama-kereta {
+  color: white;
+}
+
+body main section.list.malam .list-content .list-body .class-box .box .card .detail .berangkat .head, body main section.list.malam .list-content .list-body .class-box .box .card .detail .sampai .head {
+  color: #eeeeee;
+}
+
+body main section.list.malam .list-content .list-body .class-box .box .card .detail .berangkat .foot, body main section.list.malam .list-content .list-body .class-box .box .card .detail .sampai .foot {
+  color: #CFF09E;
+}
+
+body main section.list.malam .list-content .list-body .class-box .box .card .detail .strip {
+  color: #eeeeee;
+}
+
+body main section.list.malam .list-content .list-body .class-box .box .card .detail .durasi {
+  color: #eeeeee;
+}
+
+body main section.list.malam .list-content .list-body .class-box .box .card .detail .harga {
+  color: #CFF09E;
+}
+
+body main section.list.malam .list-content .list-body .class-box .box .card .detail .beli a {
+  background-color: #0B486B;
+  color: #CFF09E;
+}
+
 body main section.list .list-content {
   height: 100%;
   width: 80%;
   padding: 40px 0px;
+  position: relative;
+}
+
+body main section.list .list-content .siang-malam {
+  width: 10%;
+  padding-bottom: 10%;
+  background-color: red;
+  position: absolute;
+  top: 0px;
+  left: -12.5%;
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+body main section.list .list-content .siang-malam:hover .isi {
+  background-color: #CFF09E;
+}
+
+body main section.list .list-content .siang-malam .isi {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: white;
+  padding: 10px;
+  transition: all 0.3s;
+}
+
+body main section.list .list-content .siang-malam .isi .fa {
+  font-size: 24px;
+  position: absolute;
+  transition: all 0.5s;
+  top: 15px;
+  left: 15px;
+}
+
+body main section.list .list-content .siang-malam .isi.both .fa-sun-o {
+  color: #79BD9A;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 5px;
+}
+
+body main section.list .list-content .siang-malam .isi.both .fa-moon-o {
+  color: #0B486B;
+  left: 50%;
+  top: 5px;
+  transform: translateX(-50%);
+}
+
+body main section.list .list-content .siang-malam .isi.siang .fa-sun-o {
+  top: 15px;
+  left: 15px;
+}
+
+body main section.list .list-content .siang-malam .isi.siang .fa-moon-o {
+  top: 101%;
+}
+
+body main section.list .list-content .siang-malam .isi.malam .fa-sun-o {
+  top: 101%;
+}
+
+body main section.list .list-content .siang-malam .isi.malam .fa-moon-o {
+  top: 15px;
+  left: 15px;
+}
+
+body main section.list .list-content .siang-malam .segitiga {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 0px;
+  height: 0px;
+  border-bottom: 500px solid #0B486B;
+  border-left: 500px solid transparent;
+}
+
+body main section.list .list-content .notif {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  padding: 30px 30%;
+  display: none;
+  z-index: 6;
+}
+
+body main section.list .list-content .notif .notif-box {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+  text-align: center;
+  padding: 10px;
+}
+
+body main section.list .list-content .notif .notif-box h3 {
+  color: white;
+  font-size: 18px;
+  line-height: normal;
 }
 
 body main section.list .list-content .list-header {
@@ -9993,6 +10181,18 @@ body main section.list .no-ticket .box h2 {
   body main section.list .list-content {
     width: 90%;
   }
+  body main section.list .list-content .siang-malam {
+    width: 100px;
+    padding-bottom: 100px;
+    left: -5.55556%;
+    top: -40px;
+    margin-bottom: 0px;
+    position: relative;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  }
+  body main section.list .list-content .notif {
+    padding: 30px 10%;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -10018,6 +10218,12 @@ body main section.list .no-ticket .box h2 {
   }
   body main section.list .list-content {
     width: 95%;
+  }
+  body main section.list .list-content .siang-malam {
+    left: -2.631578947368421052631578947368%;
+  }
+  body main section.list .list-content .notif {
+    padding: 20px 5%;
   }
   body main section.list .list-content .list-filter h3 {
     cursor: pointer;
